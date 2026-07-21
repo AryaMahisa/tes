@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex shrink-0 items-center gap-2">
-                    <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-teal-700 text-white font-bold">A</span>
+                    <img src="{{ asset('bendera.png') }}" alt="Logo" class="h-11 w-11 rounded-xl object-contain">
                     <span class="font-semibold text-slate-800 text-lg">Absensi<span class="text-teal-700">Ku</span></span>
                 </div>
 
