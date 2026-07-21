@@ -1,25 +1,24 @@
-# 🎓 E-Surat Mahasiswa
+# 📝 Sistem Absensi Pegawai
 
-> Sistem Administrasi Pengajuan Surat Mahasiswa Berbasis Web menggunakan Laravel 12.
+> Sistem Pengajuan Absensi Untuk Pegawai Berbasis Web menggunakan Laravel 13.
 
 ---
 
 ## 📌 Deskripsi
 
-**E-Surat Mahasiswa** merupakan aplikasi berbasis web yang dirancang untuk mempermudah proses administrasi surat di lingkungan kampus.
+**Sistem Absensi Pegawai** merupakan aplikasi berbasis web yang dirancang untuk mempermudah proses absensi pada lingkungan kerja.
 
-Mahasiswa dapat:
+Pegawai dapat:
 
-- Mengajukan berbagai jenis surat secara online
-- Memantau status pengajuan
-- Mengunduh surat yang telah disetujui
+- Mengajukan absensi secara online
+- Melakukan absensi keluar
+- Mengajukan izin, libur atau sakit
 
 Admin dapat:
 
-- Mengelola data
-- Memverifikasi pengajuan
-- Menerbitkan surat
-- Menghasilkan laporan PDF maupun Excel
+- Mengelola data pegawai
+- Melihat data absensi pegawai
+- Menyetujui atau menolak pengajuan izin/cuti
 
 ---
 
@@ -28,7 +27,6 @@ Admin dapat:
 ## 🔐 Authentication
 
 - Login
-- Register
 - Email Verification
 - Logout
 
@@ -39,71 +37,32 @@ Admin dapat:
 ### Admin
 
 - Dashboard Admin
-- Kelola Mahasiswa
-- Kelola Jenis Surat
-- Verifikasi Pengajuan
-- Cetak Surat
-- Export PDF
-- Export Excel
+- Kelola Pegawai
+- Rekap Absensi
+- Persetujuan Izin
+- Edit Profil
+- Ganti Akun
 
 ### Mahasiswa
 
-- Dashboard Mahasiswa
-- Ajukan Surat
-- Lihat Status Pengajuan
+- Dashboard Pegawai
+- Ajukan Izin tidak masuk
+- Melakukan Absensi
 - Download Surat
 - Edit Profil
+- Ganti Akun
 
 ---
 
 ## 🛠️ Teknologi
 
-- Laravel 12
+- Laravel 13
 - PHP 8.x
 - MySQL
 - Bootstrap 5
 - JavaScript
-- SweetAlert2
 
----
-
-## 📷 Screenshot
-
-![Dashboard](images/dashboard.png)
-
----
-
-## 🚀 Instalasi
-
-```bash
-git clone https://github.com/username/e-surat.git
-```
-
-```bash
-cd e-surat
-```
-
-```bash
-composer install
-```
-
-```bash
-cp .env.example .env
-```
-
-```bash
-php artisan key:generate
-```
-
-```bash
-php artisan migrate --seed
-```
-
-```bash
-php artisan serve
-```
-
----
+........
 
 ## 👨‍💻 Developer
 
