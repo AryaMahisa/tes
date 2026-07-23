@@ -167,19 +167,23 @@ Base URL: `http://127.0.0.1:8000/api`
 
 > Screenshot berikut membuktikan seluruh fitur telah berjalan dengan baik.
 ### 1. Halaman Login & Autentikasi
-![Halaman Login] ()
-
-### 2. Verifikasi Email
+![Halaman Login](Screenshot/Login.png)
 
 ### 3. Dashboard
+![Dashboard Admin](Screenshot/Dashboard_(admin).png)
+![Dashboard Users](Dashboard_(user).png)
 
 ### 4. CRUD (belum diisi)
+![Halaman Login](Screenshot/Login.png)
 
 ### 5. REST API — Pengujian di Postman
+![Halaman Login](Screenshot/Login.png)
 
 ### 6. Pemisahan Hak Akses Admin & Staff
+![Halaman Login](Screenshot/Login.png)
 
 ### 7. Tampilan Responsive (Desktop & Mobile)
+![Halaman Login](Screenshot/Login.png)
 
 
 
