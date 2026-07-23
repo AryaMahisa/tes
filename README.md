@@ -163,31 +163,33 @@ Base URL: `http://127.0.0.1:8000/api`
 | POST   | `/admin/leave-requests/{leaveRequest}/approve` | Menyetujui pengajuan izin                            | Ya (Admin)  |
 | POST   | `/admin/leave-requests/{leaveRequest}/reject`  | Menolak pengajuan izin                               | Ya (Admin)  |
 
+
+Autentikasi menggunakan Bearer Token (Laravel Sanctum). Token diperoleh dari endpoint `/login`, kemudian disertakan pada header `Authorization: Bearer {token}` untuk mengakses endpoint yang memerlukan autentikasi.
+
 ## Dokumentasi Screenshot
 
 > Screenshot berikut membuktikan seluruh fitur telah berjalan dengan baik.
 ### 1. Halaman Login & Autentikasi
-![Halaman Login](Screenshot/Login.png)
+![Halaman Login](Screenshot/Halaman_Login.png)
+
+### 2. Verifikasi email
+![Dashboard Admin](Screenshot/Verifikasi.png)
 
 ### 3. Dashboard
 ![Dashboard Admin](Screenshot/Dashboard_(admin).png)
 ![Dashboard Users](Dashboard_(user).png)
 
-### 4. CRUD (belum diisi)
-![Halaman Login](Screenshot/Login.png)
+### 4. CRUD (Users)
+![Halaman Login](Screenshot/data_users_(admin).png)
+![Halaman Login](Screenshot/create_user.png)
 
 ### 5. REST API — Pengujian di Postman
-![Halaman Login](Screenshot/Login.png)
+![Halaman Login](Screenshot/Login-API.png)
 
-### 6. Pemisahan Hak Akses Admin & Staff
-![Halaman Login](Screenshot/Login.png)
-
-### 7. Tampilan Responsive (Desktop & Mobile)
-![Halaman Login](Screenshot/Login.png)
+### 6. Tampilan Responsive (Desktop & Mobile)
+![Halaman Login](Screenshot/Tampilan_Responsif_(HP).jpeg)
 
 
-
-Autentikasi menggunakan Bearer Token (Laravel Sanctum). Token diperoleh dari endpoint `/login`, kemudian disertakan pada header `Authorization: Bearer {token}` untuk mengakses endpoint yang memerlukan autentikasi.
 
 
 
