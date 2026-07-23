@@ -1,0 +1,86 @@
+$kind: http-request
+name: 'Get Profil (Me)'
+method: GET
+order: 3000
+url: '{{base_url}}/me'
+headers:
+  - key: Accept
+    value: application/json
+  - key: Authorization
+    value: 'Bearer {{token_user}}'
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      // Visualization Script
+      const template = `
+      <style>
+        body { font-family: sans-serif; margin: 0; padding: 16px; }
+        .card {
+          max-width: 420px;
+          border: 1px solid #e0e0e0;
+          border-radius: 10px;
+          padding: 24px 28px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+        .avatar {
+          width: 64px; height: 64px;
+          border-radius: 50%;
+          background: #6366f1;
+          color: #fff;
+          font-size: 28px;
+          font-weight: 700;
+          display: flex; align-items: center; justify-content: center;
+          margin-bottom: 16px;
+        }
+        .name { font-size: 22px; font-weight: 700; margin: 0 0 4px; }
+        .role-badge {
+          display: inline-block;
+          padding: 2px 10px;
+          border-radius: 12px;
+          font-size: 12px;
+          font-weight: 600;
+          text-transform: uppercase;
+          margin-bottom: 16px;
+        }
+        .admin-badge { background: #fef3c7; color: #92400e; }
+        .user-badge  { background: #dbeafe; color: #1e40af; }
+        .field { display: flex; gap: 8px; margin-bottom: 8px; font-size: 14px; }
+        .label { color: #6b7280; min-width: 90px; }
+        .value { color: #111827; font-weight: 500; word-break: break-all; }
+        .verified { color: #16a34a; font-size: 12px; margin-left: 4px; }
+        .unverified { color: #dc2626; font-size: 12px; margin-left: 4px; }
+      </style>
+      <div class="card">
+        <div class="avatar">{{initial}}</div>
+        <div class="name">{{name}}</div>
+        <span class="role-badge {{roleTone}}">{{role}}</span>
+        <div class="field"><span class="label">Email</span><span class="value">{{email}}<span class="{{verifiedTone}}">{{verifiedLabel}}</span></span></div>
+        <div class="field"><span class="label">Phone</span><span class="value">{{phone}}</span></div>
+        <div class="field"><span class="label">User ID</span><span class="value">{{id}}</span></div>
+        <div class="field"><span class="label">Joined</span><span class="value">{{createdAt}}</span></div>
+      </div>`;
+
+      function createPayload() {
+        var body = pm.response.json();
+        var u = body.user;
+        var name = u.name || 'Unknown';
+        var role = u.role || 'user';
+        var phone = u.phone || '-';
+        var isVerified = !!u.email_verified_at;
+        var joined = u.created_at ? new Date(u.created_at).toLocaleDateString('id-ID', { year: 'numeric', month: 'long', day: 'numeric' }) : '-';
+        return {
+          initial: name.charAt(0).toUpperCase(),
+          name: name,
+          email: u.email || '-',
+          phone: phone,
+          id: u.id,
+          role: role,
+          roleTone: role === 'admin' ? 'admin-badge' : 'user-badge',
+          verifiedLabel: isVerified ? '✓ verified' : '✗ unverified',
+          verifiedTone: isVerified ? 'verified' : 'unverified',
+          createdAt: joined
+        };
+      }
+
+      pm.visualizer.set(template, createPayload());

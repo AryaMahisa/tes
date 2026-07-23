@@ -8,6 +8,14 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\LeaveRequestController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return response()->json([
+        'message' => 'REST API Sistem Absensi',
+        'version' => '1.0',
+        'status' => 'running',
+    ]);
+});
+
 // ==== Publik (tidak perlu token) ====
 Route::post('/login', [AuthController::class, 'login']);
 

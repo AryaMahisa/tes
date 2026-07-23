@@ -1,0 +1,14 @@
+$kind: collection
+name: AbsensiKu API
+description: Koleksi Postman untuk REST API aplikasi Absensi Laravel
+variables:
+  - key: base_url
+    value: 'http://127.0.0.1:8000/api'
+  - key: token_admin
+    value: ''
+  - key: token_user
+    value: ''
+  - key: user_id
+    value: '3'
+  - key: leave_id
+    value: '1'

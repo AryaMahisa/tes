@@ -1,0 +1,25 @@
+$kind: http-request
+name: Login
+method: POST
+order: 1000
+url: '{{base_url}}/login'
+headers:
+  - key: Accept
+    value: application/json
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "email": "user1@absensi.test",
+      "password": "password"
+    }
+scripts:
+  - type: afterResponse
+    language: text/javascript
+    code: |-
+      var body = pm.response.json();
+      if (body.token) {
+        pm.collectionVariables.set("token_user", body.token);
+      }

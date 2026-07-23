@@ -1,0 +1,301 @@
+{
+  "info": {
+    "name": "AbsensiKu API",
+    "description": "Koleksi Postman untuk REST API aplikasi Absensi Laravel",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://127.0.0.1:8000/api" },
+    { "key": "token_admin", "value": "" },
+    { "key": "token_user", "value": "" },
+    { "key": "user_id", "value": "3" },
+    { "key": "leave_id", "value": "1" }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login (Admin)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "email", "value": "admin@absensi.test" },
+                { "key": "password", "value": "password" }
+              ]
+            },
+            "url": "{{base_url}}/login"
+          }
+        },
+        {
+          "name": "Login (User)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "email", "value": "user1@absensi.test" },
+                { "key": "password", "value": "password" }
+              ]
+            },
+            "url": "{{base_url}}/login"
+          }
+        },
+        {
+          "name": "Get Profil (Me)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_user}}" }
+            ],
+            "url": "{{base_url}}/me"
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_user}}" }
+            ],
+            "url": "{{base_url}}/logout"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Absensi (User)",
+      "item": [
+        {
+          "name": "Check-in",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_user}}" }
+            ],
+            "url": "{{base_url}}/attendance/check-in"
+          }
+        },
+        {
+          "name": "Check-out",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_user}}" }
+            ],
+            "url": "{{base_url}}/attendance/check-out"
+          }
+        },
+        {
+          "name": "Status Hari Ini",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_user}}" }
+            ],
+            "url": "{{base_url}}/attendance/today"
+          }
+        },
+        {
+          "name": "Riwayat Absensi",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_user}}" }
+            ],
+            "url": "{{base_url}}/attendance"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pengajuan Izin (User)",
+      "item": [
+        {
+          "name": "Ajukan Izin",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_user}}" }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "jenis", "value": "sakit" },
+                { "key": "tanggal_mulai", "value": "2026-08-01" },
+                { "key": "tanggal_selesai", "value": "2026-08-02" },
+                { "key": "alasan", "value": "Demam tinggi, perlu istirahat." }
+              ]
+            },
+            "url": "{{base_url}}/leave-requests"
+          }
+        },
+        {
+          "name": "Daftar Pengajuan Saya",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_user}}" }
+            ],
+            "url": "{{base_url}}/leave-requests"
+          }
+        },
+        {
+          "name": "Batalkan Pengajuan",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_user}}" }
+            ],
+            "url": "{{base_url}}/leave-requests/{{leave_id}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin - Kelola Pengguna",
+      "item": [
+        {
+          "name": "Daftar Pengguna",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_admin}}" }
+            ],
+            "url": "{{base_url}}/admin/users"
+          }
+        },
+        {
+          "name": "Tambah Pengguna",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_admin}}" }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "name", "value": "Eka Wijaya" },
+                { "key": "email", "value": "eka@absensi.test" },
+                { "key": "role", "value": "user" },
+                { "key": "password", "value": "password123" }
+              ]
+            },
+            "url": "{{base_url}}/admin/users"
+          }
+        },
+        {
+          "name": "Detail Pengguna",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_admin}}" }
+            ],
+            "url": "{{base_url}}/admin/users/{{user_id}}"
+          }
+        },
+        {
+          "name": "Update Pengguna",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_admin}}" }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "name", "value": "Eka Wijaya Update" },
+                { "key": "email", "value": "eka@absensi.test" },
+                { "key": "role", "value": "user" }
+              ]
+            },
+            "url": "{{base_url}}/admin/users/{{user_id}}"
+          }
+        },
+        {
+          "name": "Hapus Pengguna",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_admin}}" }
+            ],
+            "url": "{{base_url}}/admin/users/{{user_id}}"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin - Rekap & Persetujuan",
+      "item": [
+        {
+          "name": "Rekap Absensi Hari Ini",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_admin}}" }
+            ],
+            "url": "{{base_url}}/admin/attendance"
+          }
+        },
+        {
+          "name": "Daftar Pengajuan Izin (Semua)",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_admin}}" }
+            ],
+            "url": "{{base_url}}/admin/leave-requests"
+          }
+        },
+        {
+          "name": "Setujui Pengajuan Izin",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_admin}}" }
+            ],
+            "url": "{{base_url}}/admin/leave-requests/{{leave_id}}/approve"
+          }
+        },
+        {
+          "name": "Tolak Pengajuan Izin",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Accept", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{token_admin}}" }
+            ],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                { "key": "catatan_admin", "value": "Bukti sakit tidak dilampirkan." }
+              ]
+            },
+            "url": "{{base_url}}/admin/leave-requests/{{leave_id}}/reject"
+          }
+        }
+      ]
+    }
+  ]
+}
